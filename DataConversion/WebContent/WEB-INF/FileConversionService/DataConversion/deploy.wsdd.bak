@@ -1,0 +1,30 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from FileConversionService WSDL service -->
+
+  <service name="FileConversion" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://DataConversion"/>
+      <parameter name="wsdlServiceElement" value="FileConversionService"/>
+      <parameter name="schemaQualified" value="http://DataConversion"/>
+      <parameter name="wsdlServicePort" value="FileConversion"/>
+      <parameter name="className" value="DataConversion.FileConversionSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="FileConversion"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="file_conversion" qname="operNS:file_conversion" xmlns:operNS="http://DataConversion" returnQName="retNS:file_conversionReturn" xmlns:retNS="http://DataConversion" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:ivFolderdirectory" xmlns:pns="http://DataConversion" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:ivFileDirectory" xmlns:pns="http://DataConversion" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="file_conversion"/>
+
+  </service>
+</deployment>

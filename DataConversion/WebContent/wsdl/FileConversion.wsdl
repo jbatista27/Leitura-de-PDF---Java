@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://DataConversion" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://DataConversion" xmlns:intf="http://DataConversion" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://DataConversion" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="file_conversion">
+    <complexType>
+     <sequence>
+      <element name="ivFolderdirectory" type="xsd:string"/>
+      <element name="ivFileDirectory" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="file_conversionResponse">
+    <complexType>
+     <sequence>
+      <element name="file_conversionReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="file_conversionResponse">
+
+      <wsdl:part element="impl:file_conversionResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="file_conversionRequest">
+
+      <wsdl:part element="impl:file_conversion" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="FileConversion">
+
+      <wsdl:operation name="file_conversion">
+
+         <wsdl:input message="impl:file_conversionRequest" name="file_conversionRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:file_conversionResponse" name="file_conversionResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="FileConversionSoapBinding" type="impl:FileConversion">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="file_conversion">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="file_conversionRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="file_conversionResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="FileConversionService">
+
+      <wsdl:port binding="impl:FileConversionSoapBinding" name="FileConversion">
+
+         <wsdlsoap:address location="http://localhost:8080/DataConversion/services/FileConversion"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
